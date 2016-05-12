@@ -21,31 +21,11 @@ import java.util.Locale;
  * Time: 5:02 PM
  */
 
-public abstract class PaySlip implements AutoCloseable {
+public abstract class PaySlip extends PayslipModel  implements AutoCloseable {
     ObjectExtractor objectExtractor;
     ExtractionAlgorithm extractionAlgorithm;
-    String designation;
-
-    private String month;
-    private String year;
-    private File file;
     private String password;
-
-    int basicEarning;
-    int hra;
-    int conveyanceAllowance;
-    int medicalAllowance;
-    int lta;
-    int cca;
-    int totalEarnings;
-    int pFund;
-    int pTax;
-    int iTax;
-    int esi;
-    int other;
-    int totalDeduction;
-    int netPayable;
-
+    private File file;
 
     static final String DATE_START_LINE = "MONTHLY PAYSLIP";
     static final String PROVIDENT_FUND = "Provident Fund(INR)";
@@ -116,23 +96,4 @@ public abstract class PaySlip implements AutoCloseable {
         }
     }
 
-    @Override
-    public String toString() {
-        return "PaySlip{" +
-                "designation='" + designation + '\'' +
-                ", month='" + month + '\'' +
-                ", year='" + year + '\'' +
-                ", basicEarning=" + basicEarning +
-                ", hra=" + hra +
-                ", conveyanceAllowance=" + conveyanceAllowance +
-                ", cca=" + cca +
-                ", totalEarnings=" + totalEarnings +
-                ", pFund=" + pFund +
-                ", pTax=" + pTax +
-                ", iTax=" + iTax +
-                ", other=" + other +
-                ", totalDeduction=" + totalDeduction +
-                ", netPayable=" + netPayable +
-                '}';
-    }
 }
