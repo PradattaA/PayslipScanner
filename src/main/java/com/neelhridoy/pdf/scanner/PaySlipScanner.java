@@ -2,12 +2,15 @@ package com.neelhridoy.pdf.scanner;
 
 import com.neelhridoy.pdf.scanner.payslip.PaySlip;
 import com.neelhridoy.pdf.scanner.payslip.PaySlipVersion;
+import com.neelhridoy.pdf.scanner.payslip.PayslipModel;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Author: Pradatta Adhikary
@@ -19,7 +22,8 @@ public class PaySlipScanner {
     private static SimpleDateFormat formatter = new SimpleDateFormat("MMM yyyy");
 
 
-    private void scan(String folderPath, String password) {
+    public List<PayslipModel> scan(String folderPath, String password) {
+        List<PayslipModel> payslipModels = new ArrayList<>();
         File file = new File(folderPath);
         if (file.exists()) {
             if (file.isDirectory()) {
@@ -27,24 +31,29 @@ public class PaySlipScanner {
                 for (File singleFile : listOfFiles != null ? listOfFiles : new File[0]) {
                     if (isPDF(singleFile)) {
                         PaySlipVersion paySlipVersion = checkForPaySlipVersion(singleFile.getName());
-                        analysePayslip(paySlipVersion, singleFile, password);
+                        PaySlip paySlip = analysePayslip(paySlipVersion, singleFile, password);
+                        if (paySlip != null) payslipModels.add(paySlip);
                     }
                 }
             } else {
                 if (isPDF(file)) {
                     PaySlipVersion paySlipVersion = checkForPaySlipVersion(file.getName());
-                    analysePayslip(paySlipVersion, file, password);
+                    PaySlip paySlip = analysePayslip(paySlipVersion, file, password);
+                    if (paySlip != null) payslipModels.add(paySlip);
                 }
             }
         }
+        return payslipModels;
     }
 
-    private void analysePayslip(PaySlipVersion paySlipVersion, File file, String password) {
+    private PaySlip analysePayslip(PaySlipVersion paySlipVersion, File file, String password) {
         try (PaySlip paySlip = PaySlip.createPaySlip(paySlipVersion, file, password)) {
             System.out.println("paySlip = " + paySlip);
+            if (paySlip != null && paySlip.getDesignation() != null) return paySlip;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     private boolean isPDF(File file) {
