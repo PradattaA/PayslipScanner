@@ -22,7 +22,7 @@ import java.util.List;
  */
 
 public class PaySlipScanner {
-    private static SimpleDateFormat formatter = new SimpleDateFormat("MMM yyyy");
+    public static SimpleDateFormat formatter = new SimpleDateFormat("MMM yyyy");
 
     public List<PayslipModel> scan(String folderPath, String password) {
         List<PayslipModel> payslipModels = new ArrayList<>();
