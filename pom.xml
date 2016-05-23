@@ -49,6 +49,12 @@
             <artifactId>poi-ooxml</artifactId>
             <version>3.9</version>
         </dependency>
+        <dependency>
+            <groupId>de.sciss</groupId>
+            <artifactId>weblaf</artifactId>
+            <version>1.28</version>
+            <type>pom</type>
+        </dependency>
     </dependencies>
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
