@@ -1,6 +1,7 @@
 package com.neelhridoy.view;
 
 import com.alee.laf.WebLookAndFeel;
+import com.neelhridoy.util.Utility;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,7 +31,7 @@ public class MainPanel {
     public static void main(String[] args) {
         try {
             WebLookAndFeel.setDecorateAllWindows(true);
-            UIManager.setLookAndFeel("com.alee.laf.WebLookAndFeel");
+            UIManager.setLookAndFeel(Utility.getString("default.LookAndFeel"));
 
             new MainPanel();
         } catch (Exception e) {
