@@ -1,5 +1,10 @@
 package com.neelhridoy.pdf.scanner.payslip;
 
+import com.neelhridoy.pdf.scanner.PaySlipScanner;
+
+import java.text.ParseException;
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Palash
@@ -36,6 +41,10 @@ public class PayslipModel {
 
     public String getYear() {
         return year;
+    }
+
+    public Date getDate() throws ParseException {
+        return PaySlipScanner.formatter.parse(month + " " + year);
     }
 
     public int getBasicEarning() {
