@@ -1,6 +1,5 @@
 package com.neelhridoy.excel.writer;
 
-import com.neelhridoy.pdf.scanner.PaySlipScanner;
 import com.neelhridoy.pdf.scanner.payslip.PayslipModel;
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.ss.usermodel.Cell;
@@ -25,7 +24,7 @@ import java.util.List;
 public class PayslipExcelWriter {
     public static final String TEMPLATE_XLSX = "resources/Salary.xlsx";
 
-    void write(List<PayslipModel> payslipModelList, String path) throws IOException, ParseException {
+    public void write(List<PayslipModel> payslipModelList, String path) throws IOException, ParseException {
         if (payslipModelList.isEmpty()) {
             System.out.println("Nothing to write!");
             return;
@@ -142,12 +141,5 @@ public class PayslipExcelWriter {
             cell = row.createCell(colNum);
         }
         return cell;
-    }
-
-    public static void main(String[] args) throws IOException, ParseException {
-        PaySlipScanner paySlipScanner = new PaySlipScanner();
-        List<PayslipModel> payslips = paySlipScanner.scan("C:\\path\\to\\Payslip", "password");
-
-        new PayslipExcelWriter().write(payslips, "Salary.xlsx");
     }
 }
