@@ -1,4 +1,4 @@
-package com.neelhridoy.pdf.scanner;
+package com.neelhridoy.db.sqlite;
 
 import java.sql.*;
 
