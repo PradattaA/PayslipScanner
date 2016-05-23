@@ -1,5 +1,6 @@
-package com.neelhridoy.pdf.scanner;
+package com.neelhridoy.excel.writer;
 
+import com.neelhridoy.pdf.scanner.PaySlipScanner;
 import com.neelhridoy.pdf.scanner.payslip.PayslipModel;
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.ss.usermodel.Cell;
