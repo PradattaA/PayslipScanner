@@ -2,10 +2,11 @@
 ### Example user template
 
 # IntelliJ project files
-vcs.xml
-workspace.xml
+.idea
+*.iml
 copyright
 inspectionProfiles
 out
+target
 gen
 # Created by .ignore support plugin (hsz.mobi)
